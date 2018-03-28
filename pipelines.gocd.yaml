@@ -9,7 +9,7 @@ pipelines:
         destination: tf-parse
         whitelist:
         - pipelines.gocd.yaml
-        - src/**/*
+        - lib/**/*
     stages: &uiStages
       - unit-test:
           clean_workspace: true
