@@ -4,7 +4,7 @@ pipelines:
     label_template: "${tf-parse[:8]}"
     materials:
       tf-parse:
-        git: https://github.com/candidpartners/tf-parse
+        git: https://github.com/candidpartners/tf-parse.git
         branch: master
         destination: tf-parse
         whitelist:
