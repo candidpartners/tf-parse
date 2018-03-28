@@ -1,6 +1,6 @@
 {
   "name": "@candidpartners/tf-parse",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Parses Terrafrom Output",
   "main": "index.js",
   "scripts": {
