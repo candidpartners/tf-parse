@@ -1,0 +1,36 @@
+pipelines:
+  tf-parse:
+    group: tf-parse
+    label_template: "${tf-parse[:8]}"
+    materials:
+      tf-parse:
+        git: https://github.com/candidpartners/tf-parse
+        branch: master
+        destination: tf-parse
+        whitelist:
+        - pipelines.gocd.yaml
+        - src/**/*
+    stages: &uiStages
+      - unit-test:
+          clean_workspace: true
+          jobs:
+            Unit-Test:
+              resources:
+                - terraform
+              tasks:
+              - script: |
+                  cd tf-parse
+                  npm i
+                  npm test
+      - deploy-to-npm:
+          approval:
+            type: manual # Require someone in the UI to manually approve the execution of this stage
+          clean_workspace: true
+          jobs:
+            deploy-to-npm:
+              resources:
+                - terraform
+              tasks:
+              - script: |
+                  cd tf-parse
+                  ./pipeline/publish-to-npm.sh
